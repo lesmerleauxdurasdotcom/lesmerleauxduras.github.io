@@ -1,0 +1,12 @@
+.list-rtl {
+    direction: rtl;
+    float: right;
+    clear: both;
+    text-align: right;
+}
+
+.list-centred {
+    text-align: center;
+    list-style: none;
+    padding-left: 0px;
+}
