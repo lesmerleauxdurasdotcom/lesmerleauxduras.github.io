@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="LesMerleauxApp">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -325,92 +325,81 @@
           </div><!-- .content-wrapper -->
         </article><!-- .section-wrapper -->
 
-        <article id="rates" class="section-wrapper clearfix" data-custom-background-img="assets/images/pool.jpg">
+        <article id="rates" class="section-wrapper clearfix" data-custom-background-img="assets/images/pool.jpg" ng-controller="RatesController">
           <div class="content-wrapper clearfix">
-                  <h1 class="section-title">Rates</h1>
-                  <h3>For up to 11 guests</h3>
+              <h1 class="section-title">Rates</h1>
+              <h3>For up to 11 guests</h3>
+              <p ng-show="Currencies.length > 1">Show me prices in
+                  <span ng-repeat="c in Currencies">
+                    <button class="btn btn-link" ng-class="{'btn-default': Currency === c}" ng-click="OnCurrencyChange(c)">{{c}}</button>
+                  </span>
+              </p>
 
-                  <div class="visible-xs">
-                      <p>
-                          Changeover day is flexible for all periods
-                      </p>
-
-                      <h5>Easter 2015</h5>
-                      <p>
-                          <small>28th March - 12th April
-                              <br>
-                              £1800 p/w
-                          </small>
-                      </p>
-
-                      <h5>Summer 2015</h5>
-                      <p>
-                          <small>1st July - 1st September
-                              <br>
-                              £2000 p/w
-                              <br>
-                              £290 per night. Minimum stay 4 nights
-                          </small>
-                      </p>
+              <p ng-show="Currencies.length === 1">Prices are in {{Currency}}</p>
 
 
-                      <h5>Other 2015</h5>
+              <div class="visible-xs">
+                  <div ng-repeat="r in Rates | filter:InDate | orderBy:'end'">
+                      <h5>{{r.name}}
+                          <span ng-show="r.start.getYear() === r.end.getYear()">&nbsp;{{r.start | date:'yyyy'}}</span>
+                          <span ng-show="r.start.getYear() !== r.end.getYear()">&nbsp;{{r.start | date:'yyyy'}}/{{r.end | date:'yy'}}</span>
+                      </h5>
                       <p>
                           <small>
-                              £1500 p/w
+                              <span ng-show="r.start">{{r.start | date:'d MMMM'}} - {{r.end | date:'d MMMM'}}<br></span>
+                              <span ng-show="r.rates[Currency].weekly">{{r.rates[Currency].weekly}} p/w</span>
+                              <span ng-show="r.rates[Currency].weekdayNight"><br>{{r.rates[Currency].weekdayNight}} per week day night</span>
+                              <span ng-show="r.rates[Currency].weekendNight"><br>{{r.rates[Currency].weekendNight}} per week end night</span>
+                              <span ng-show="r.rates[Currency].weekdayNight || r.rates[Currency].weekendNight"><br>Minimum stay {{r.minimumStay}}</span>
                               <br>
-                              £215 per night. Minimum stay 4 nights
+                              <span>Changeover day is </span>
+                              <span ng-show="r.changeOverDay !== undefined">{{r.changeOverDay}}</span>
+                              <span ng-show="r.changeOverDay === undefined">flexible</span>
                           </small>
                       </p>
-
                   </div>
 
-                  <table class="table table-responsive table-striped table-hover visible-md visible-lg">
-                      <thead>
+
+              </div>
+
+              <div class="row visible-md visible-lg">
+                  <div class="col-md-10 pull-right">
+                      <table class="table table-responsive table-striped table-hover">
+                          <thead>
                           <tr>
                               <td>Period</td>
                               <td>From</td>
                               <td>To&nbsp;&nbsp;</td>
-                              <td>Weekly</td>
-                              <td>Weekday Night</td>
-                              <td>Weekend Night</td>
-                              <td>Minimum Stay</td>
-                              <td>Changeover Day</td>
+                              <td class="text-center">Weekly</td>
+                              <td class="text-center">Weekday<br>Night</td>
+                              <td class="text-center">Weekend<br>Night</td>
+                              <td class="text-center">Minimum<br>Stay</td>
+                              <td class="text-center">Changeover<br>Day</td>
                           </tr>
-                      </thead>
-                      <tbody>
-                          <tr>
-                              <td>Easter 2015</td>
-                              <td>28<sup>st</sup><br>March</td>
-                              <td>12<sup>th</sup><br>April</td>
-                              <td>£1800</td>
-                              <td>&nbsp;</td>
-                              <td>&nbsp;</td>
-                              <td>1 week</td>
-                              <td>Flexible</td>
+                          </thead>
+                          <tbody>
+                          <tr ng-repeat="r in Rates | filter:InDate | orderBy:'end'">
+                              <td>{{r.name}}&nbsp;
+                                  <span ng-show="r.start.getYear() === r.end.getYear()">{{r.start | date:'yyyy'}}</span>
+                                  <span ng-show="r.start.getYear() !== r.end.getYear()">{{r.start | date:'yyyy'}}/{{r.end | date:'yy'}}</span>
+                              </td>
+                              <td>{{r.start | date:'d'}}<br>{{r.start | date:'MMMM'}}</td>
+                              <td>{{r.end | date:'d'}}<br>{{r.end | date:'MMMM'}}</td>
+                              <td class="text-center">{{r.rates[Currency].weekly}}</td>
+                              <td class="text-center">{{r.rates[Currency].weekdayNight}}</td>
+                              <td class="text-center">{{r.rates[Currency].weekendNight}}</td>
+                              <td class="text-center">{{r.minimumStay}}</td>
+                              <td class="text-center">
+                                  <span ng-show="r.changeOverDay !== undefined">{{r.changeOverDay}}</span>
+                                  <span ng-show="r.changeOverDay === undefined">Flexible</span>
+                              </td>
                           </tr>
-                          <tr>
-                              <td>Summer 2015</td>
-                              <td>1<sup>st</sup><br>July</td>
-                              <td>1<sup>st</sup><br>Sept</td>
-                              <td>£2000</td>
-                              <td>£290</td>
-                              <td>£290</td>
-                              <td>4 Nights</td>
-                              <td>Flexible</td>
-                          </tr>
-                          <tr>
-                              <td>Other</td>
-                              <td>&nbsp;</td>
-                              <td>&nbsp;</td>
-                              <td>£1500</td>
-                              <td>£215</td>
-                              <td>£215</td>
-                              <td>4 Nights</td>
-                              <td>Flexible</td>
-                          </tr>
-                      </tbody>
-                  </table>
+                          </tbody>
+                      </table>
+                  </div>
+
+              </div>
+
 
           </div><!-- .content-wrapper -->
         </article><!-- .section-wrapper -->
@@ -451,6 +440,9 @@
 
     <!-- Javascripts
     ================================================== -->
+
+    <script src="rates-data.js"></script>
+    <script src="rates.js"></script>
 
     <!-- Jquery and Bootstrap JS -->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
