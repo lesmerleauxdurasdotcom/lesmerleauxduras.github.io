@@ -9,7 +9,7 @@ angular.module ('LesMerleauxApp', []).
             ;
         $scope.Rates = __rates__;
         $scope.Currency = "GBP";
-        $scope.Currencies = [{name: "GBP", fx: 1},{name: "EUR", fx: 1.36}, {name: "USD", fx: 1.55}];
+        $scope.Currencies = [{name: "GBP", fx: 1}]; //,{name: "EUR", fx: 1.36}, {name: "USD", fx: 1.55}];
         $scope.OnCurrencyChange = function (c) {
             $scope.Currency = c;
         }
