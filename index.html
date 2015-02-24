@@ -331,7 +331,7 @@
               <h3>For up to 11 guests</h3>
               <p ng-show="Currencies.length > 1">Show me prices in
                   <span ng-repeat="c in Currencies">
-                    <button class="btn btn-link" ng-class="{'btn-default': Currency === c}" ng-click="OnCurrencyChange(c)">{{c}}</button>
+                    <button class="btn btn-link" ng-class="{'btn-default': Currency === c.name}" ng-click="OnCurrencyChange(c.name)">{{c.name}}</button>
                   </span>
               </p>
 
@@ -347,7 +347,7 @@
                       <p>
                           <small>
                               <span ng-show="r.start">{{r.start | date:'d MMMM'}} - {{r.end | date:'d MMMM'}}<br></span>
-                              <span ng-show="r.rates[Currency].weekly">{{r.rates[Currency].weekly}} p/w</span>
+                              <span ng-show="r.rates[Currency].weekly">{{r.rates[Currency].weekly}} per week</span>
                               <span ng-show="r.rates[Currency].weekdayNight"><br>{{r.rates[Currency].weekdayNight}} per week day night</span>
                               <span ng-show="r.rates[Currency].weekendNight"><br>{{r.rates[Currency].weekendNight}} per week end night</span>
                               <span ng-show="r.rates[Currency].weekdayNight || r.rates[Currency].weekendNight"><br>Minimum stay {{r.minimumStay}}</span>
