@@ -76,6 +76,7 @@
           <li id="menu-item-grid" class="menu-item scroll"><a href="#grid">Where</a></li>
           <li id="menu-item-featured" class="menu-item scroll"><a href="#galleries">Gallery</a></li>
           <li id="menu-item-rates" class="menu-item scroll"><a href="#rates">Rates</a></li>
+          <li id="menu-item-reviews" class="menu-item scroll"><a href="#reviews">Reviews</a></li>
           <!--<li id="menu-item-contact" class="menu-item scroll"><a href="#booking">Booking</a></li>-->
         </ul><!-- #main-menu -->
 
@@ -270,6 +271,8 @@
           </div><!-- .content-wrapper -->
         </article><!-- .section-wrapper -->
 
+
+
         <article id="galleries" class="section-wrapper clearfix" data-custom-background-img="assets/images/house-side-3.jpg">
         <!--<article id="featured" class="section-wrapper clearfix" data-custom-background-img="assets/images/other_images/bg3.jpg">-->
           <div class="content-wrapper clearfix">
@@ -401,6 +404,67 @@
           </div><!-- .content-wrapper -->
         </article><!-- .section-wrapper -->
 
+          <article id="reviews" class="section-wrapper clearfix" data-custom-background-img="assets/images/drive.jpg" ng-controller="ReviewsController">
+              <div class="content-wrapper clearfix">
+                  <div class="col-sm-11 col-md-10 pull-right">
+
+                      <h1 class="section-title">Reviews</h1>
+
+                      <!-- grid -->
+                      <section class="grid row clearfix clearfix-for-2cols">
+
+                          <!-- grid item -->
+                          <div class="grid-item col-md-6">
+                              <div class="item-content clearfix">
+                                  <div class="text-content" itemscope itemtype="http://data-vocabulary.org/Review">
+                                      <meta itemprop="itemreviewed" content="Les Merleaux" />
+                                      <p>
+                                      <blockquote>
+                                          <i>&quot;<span itemprop="summary">Wonderful relaxed holiday in a gorgeous spot. Beautiful character filled country house with everything you could need!</span>&quot;</i><br>
+                          <span><meta itemprop="rating" content="5" />
+                          <span class="glyphicon glyphicon-star"></span>&nbsp;<span class="glyphicon glyphicon-star"></span>&nbsp;<span class="glyphicon glyphicon-star"></span>&nbsp;<span class="glyphicon glyphicon-star"></span>&nbsp;<span class="glyphicon glyphicon-star"></span>&nbsp;
+                                <footer><span itemprop="reviewer">Gina Hockley</span>, <span itemprop="dtreviewed" datetime="2014-08">August 2014</span></footer>
+                              </span>
+                                      </blockquote>
+
+                                      <small><a target="_blank" href="http://www.tripadvisor.co.uk/ShowUserReviews-g1079319-d7617055-r250940647-Les_Merleaux-Duras_Lot_et_Garonne_Aquitaine.html#review_250940647">Read the full review on Trip Advisor</a></small>
+
+
+                                      </p>
+                                  </div>
+                              </div><!-- end: .item-content -->
+                          </div><!-- end: .grid-item -->
+
+
+                          <!-- grid item -->
+                          <div class="grid-item col-md-6" ng-repeat="r in Reviews">
+                              <div class="item-content clearfix">
+                                  <div class="text-content" itemscope itemtype="http://data-vocabulary.org/Review">
+                                      <meta itemprop="itemreviewed" content="Les Merleaux" />
+                                      <p>
+                                      <blockquote>
+                                          <i>&quot;<span itemprop="summary">{{r.summary}}</span>&quot;</i>
+                                          <br>
+                                  <span><meta itemprop="rating" content="{{r.rating}}" />
+                          <span class="glyphicon glyphicon-star"></span>&nbsp;<span class="glyphicon glyphicon-star"></span>&nbsp;<span class="glyphicon glyphicon-star"></span>&nbsp;<span class="glyphicon glyphicon-star"></span>&nbsp;<span class="glyphicon glyphicon-star"></span>&nbsp;
+                                <footer><span itemprop="reviewer">{{r.reviewer}}</span>, <span itemprop="dtreviewed" datetime="2014-08">August 2014</span></footer>
+                              </span>
+                                      </blockquote>
+
+                                      <small ng-show="r.source"><a target="_blank" ng-href="r.source.link">Read the full review on {{r.source.name}}</a></small>
+
+
+                                      </p>
+                                  </div>
+                              </div><!-- end: .item-content -->
+                          </div><!-- end: .grid-item -->
+
+
+                      </section><!-- end: grid -->
+
+                  </div><!-- .col-sm-11 -->
+              </div><!-- .content-wrapper -->
+          </article><!-- .section-wrapper -->
       </section><!-- #main-content -->
 
 
