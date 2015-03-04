@@ -14,3 +14,8 @@
 table thead tr td {
     font-weight: bold;
 }
+
+.subh1 {
+    font-size: 0.4em;
+    font-style: normal;
+}

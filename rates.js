@@ -51,7 +51,7 @@ angular.module ('LesMerleauxApp', []).
                 rating: 5,
                 source: {
                     name: 'Trip Advisor',
-                    link: 'http://www.tripadvisor.co.uk/ShowUserReviews-g1079319-d7617055-r250940647-Les_Merleaux-Duras_Lot_et_Garonne_Aquitaine.html#review_250940647">Read the full review on Trip Advisor'
+                    link: 'http://www.tripadvisor.co.uk/ShowUserReviews-g1079319-d7617055-r250940647-Les_Merleaux-Duras_Lot_et_Garonne_Aquitaine.html#review_250940647'
                 }
             }
 
