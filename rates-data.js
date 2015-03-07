@@ -9,10 +9,14 @@ var __rates__ =  [
         // changeOverDay: 'Saturday',
         rates: {
             GBP: {
-                weekly: 1800
+                weekly: 1500
                 //weekdayNight: 0,
                 //weekendNight: 0
 
+            },
+
+            EUR: {
+                weekly: 2050
             }
         }
     },
@@ -25,10 +29,14 @@ var __rates__ =  [
         // changeOverDay: 'Saturday',
         rates: {
             GBP: {
-                weekly: 2000,
+                weekly: 1700,
                 weekdayNight: 290,
                 weekendNight: 290
 
+            },
+
+            EUR: {
+                weekly: 2360
             }
         }
     },
@@ -39,10 +47,14 @@ var __rates__ =  [
         // changeOverDay: 'Saturday',
         rates: {
             GBP: {
-                weekly: 1500,
+                weekly: 1200,
                 weekdayNight: 215,
                 weekendNight: 215
 
+            },
+
+            EUR: {
+                weekly: 1670
             }
         }
     }
